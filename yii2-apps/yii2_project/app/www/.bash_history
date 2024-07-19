@@ -23,3 +23,18 @@ sudo nginx -s reload
 su -
 su -
 exit
+pwd
+composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-project
+composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-project
+cd yii-project/
+ls -l
+php ini
+php init
+0
+php init
+exit
+cd /var/www/yii-project//frontend/web/
+pwd
+ls -l
+pwd
+exit
