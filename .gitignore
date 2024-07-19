@@ -1,2 +1,5 @@
-# Ignore MySQL socket file
-mysql-data/mysql.sock
+# Ignore MySQL data directory
+yii2-apps/yii2_project/app/mysql-data/
+
+# Ignore Unix socket files
+*.sock
