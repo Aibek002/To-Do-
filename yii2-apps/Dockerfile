@@ -1,29 +1,28 @@
-# Use an official PHP runtime as a parent image
 FROM php:8.3-fpm
 
-# Install required PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    git \
+    && docker-php-ext-install zip
 
-# Install Nginx
-RUN apt-get update && apt-get install -y nginx
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy Nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# Check Nginx configuration
-RUN nginx -t
-
-# Copy the application code
-COPY . /var/www/html
-
-# Set working directory
 WORKDIR /var/www/html
 
-# Set permissions for the web server
-RUN chown -R www-data:www-data /var/www/html
+# Copy the project files into the container
+COPY . /var/www/html
 
-# Expose port 80
-EXPOSE 80
+# Install project dependencies
+RUN composer install
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
 
 # Start Nginx and PHP-FPM
 CMD ["sh", "-c", "/usr/local/sbin/php-fpm && service nginx start"]
