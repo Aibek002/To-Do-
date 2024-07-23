@@ -3,13 +3,13 @@
 namespace app\controllers\admin;
 
 
-use yii\web\Controller;
+use app\controllers\AppController;
 
-class UserController extends Controller {
+class UserController extends AppController {
 
     public function actionIndex() {
 
-        $helloWorld="Hello , Worlds";
+        $helloWorld="Hello , Admin";
         return $this->render('index' , ['helloWorld' => $helloWorld]);
     }
 }
