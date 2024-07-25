@@ -25,10 +25,18 @@ class TestForm extends Model
     public function rules()
     {
         return [
-            [['name', 'email'], 'required' ],
-            ['email','email'],
-            ['name','string','length'=> [2,10]],
+            [['name', 'email'], 'required'],
+            ['email', 'email'],
+            ['name', 'string', 'length' => [2, 10]],
+            ['text', 'trim'],
+            ["name", "myRule"]
+
 
         ];
+    }
+    public function myRule($atr){
+        if(!in_array($this->$atr,['Aibek','Aibeks'])){
+            $this->addError($atr,'Wrong');
+        }
     }
 }

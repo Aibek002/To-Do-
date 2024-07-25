@@ -2,10 +2,10 @@
 FROM php:8.3-fpm
 
 # Install required PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql
 
 # Install Nginx
 RUN apt-get update && apt-get install -y nginx
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Copy Nginx config
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
