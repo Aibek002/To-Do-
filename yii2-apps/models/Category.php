@@ -2,6 +2,12 @@
 
 namespace app\models;
 
-class Category extends \yii\db\ActiveRecord {   
-     
+class Category extends \yii\db\ActiveRecord
+{
+
+
+    public static function tableName()
+    {
+        return "example_table";
+    }
 }

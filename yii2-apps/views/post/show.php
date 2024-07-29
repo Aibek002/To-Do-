@@ -1,18 +1,18 @@
 <?php
-$servername = "db";
-$username = "yii2basic";
-$password = "yii2basic";
-$dbname = "yii2basic";
+// $servername = "db";
+// $username = "yii2basic";
+// $password = "yii2basic";
+// $dbname = "yii2basic";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+// try {
+//     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch(PDOException $e) {
+//     die("Connection failed: " . $e->getMessage());
+// }
 
-$query = $conn->query("SELECT * FROM example_table");
-$results = $query->fetchAll(PDO::FETCH_ASSOC);
+// $query = $conn->query("SELECT * FROM example_table");
+// $results = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -48,13 +48,17 @@ $results = $query->fetchAll(PDO::FETCH_ASSOC);
         ?>
     </tr>
     <?php
-    foreach ($results as $row) {
-        echo "<tr>";
-        foreach ($row as $column) {
-            echo "<td>" . htmlspecialchars($column) . "</td>";
-        }
-        echo "</tr>";
+    // debug($cats);
+    foreach ($cats as $key => $cat) {
+        echo $cat->name . "<br>";
     }
+    // foreach ($results as $row) {
+    //     echo "<tr>";
+    //     foreach ($row as $column) {
+    //         echo "<td>" . htmlspecialchars($column) . "</td>";
+    //     }
+    //     echo "</tr>";
+    // }
     ?>
 </table>
 ртпт

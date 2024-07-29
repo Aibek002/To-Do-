@@ -30,8 +30,8 @@ public function actionTest(){
  
 }
 public function actionShow(){
-    // $cats=Category::find()->all();
-    return $this->render('show' );
+    $cats=Category::find()->all();
+    return $this->render('show' ,compact('cats') );
  
 }
 }
