@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\SignupForm;
+use app\models\UserInfo;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -60,7 +62,7 @@ class SiteController extends AppController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('homepage');
     }
 
     /**
@@ -128,7 +130,36 @@ class SiteController extends AppController
     }
 
 
-    public function actionHello(){
+    public function actionHello()
+    {
         return $this->render('hello');
+    }
+
+
+
+
+    // SignUp
+    public function actionSignup()
+    {
+        $signup = new SignupForm();
+
+        if ($signup->load(Yii::$app->request->post()) && $signup->validate()) {
+            $table = new UserInfo();
+            $table->username = $signup->username;
+            $table->email = $signup->email;
+            $table->password = $signup->password;
+
+            if ($table->save()) {
+                Yii::$app->session->setFlash('success', 'Successfully Registration');
+                return $this->refresh();
+            } else {
+                Yii::$app->session->setFlash('error', "Error Registration");
+            }
+
+        }
+        return $this->render("signup", [
+            "signup" => $signup
+        ]);
+
     }
 }
