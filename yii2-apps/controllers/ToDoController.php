@@ -59,14 +59,34 @@ class TodoController extends Controller
         if (!$delete) {
             throw new NotFoundHttpException("Error: Not found");
         }
-        if($delete->delete()){
-            Yii::$app->session->setFlash('success' , "Successfylly deleted");
+        if ($delete->delete()) {
+            Yii::$app->session->setFlash('success', "Successfylly deleted");
             return $this->redirect("/index.php?r=todo/todolist");
 
-        }else{
+        } else {
             Yii::$app->session->setFlash('error', 'Error deleting task');
             return $this->redirect("/index.php?r=todo/todolist");
 
         }
     }
+
+    public function actionUpdateStatus()
+{
+    Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    $id = Yii::$app->request->post('id');
+    $todo = TodoInfo::findOne($id);
+
+    if ($todo) {
+        $status = Yii::$app->request->post('status', 'Pending');
+        $todo->status = $status;
+        if ($todo->save()) {
+            return ['success' => true];
+        } else {
+            return ['success' => false, 'errors' => $todo->errors];
+        }
+    }
+
+    return ['success' => false, 'message' => 'Task not found'];
+}
+
 }
