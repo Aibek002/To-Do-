@@ -15,7 +15,6 @@ $this->registerMetaTag(['name' => 'description', 'content' => $this->params['met
 $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
 
-
 ?>
 <?php $this->beginPage() ?>
 
@@ -39,15 +38,21 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
                 <ul class="nav nav-pills">
                     <li role="presentation" class='nav-item'>
-                        <?= Html::a('Home', '/index.php/', ['class' => 'nav-link active']) ?></li>
+                        <?= Html::a('Home', '/index.php/', ['class' => 'nav-link active']) ?>
+                    </li>
                     <li role="presentation" class='nav-item'>
-                        <?= Html::a('Articles', ['/post/test/'], ['class' => 'nav-link']) ?></li>
+                        <?= Html::a('create', ['/todo/todo/'], ['class' => 'nav-link']) ?>
+                    </li>
                     <li role="presentation" class='nav-item'>
-                        <?= Html::a('Article', ['/post/show/'], ['class' => 'nav-link']) ?></li>
-                        <li role="presentation" class='nav-item'>
-                        <?= Html::a('Article', ['/фв/show/'], ['class' => 'nav-link']) ?></li>
+
                 </ul>
             </header>
+            <div class="container">
+                <?php if (!empty($this->params['breadcrumbs'])): ?>
+                    <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
+                <?php endif ?>
+                <?= Alert::widget() ?>
+            </div>
             <?= $content ?>
 
         </div>

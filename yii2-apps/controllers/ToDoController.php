@@ -12,6 +12,8 @@ class TodoController extends Controller
 {
     public function actionTodo()
     {
+        $this->layout = 'basic';
+        
         $toDoForm = new ToDoForm();
         if ($toDoForm->load(Yii::$app->request->post()) && $toDoForm->validate()) {
 
@@ -36,6 +38,8 @@ class TodoController extends Controller
     }
     public function actionTodolist()
     {
+        $this->layout = 'basic';
+        
         $todolist = TodoInfo::find()->All();
         return $this->render("todolist", compact("todolist"));
         // return "hello";
@@ -43,6 +47,8 @@ class TodoController extends Controller
     }
     public function actionUpdate($id)
     {
+        $this->layout = 'basic';
+        
         $update = TodoInfo::findOne($id);
         if (!$update) {
             throw new NotFoundHttpException("Error: Not find value");
@@ -55,6 +61,8 @@ class TodoController extends Controller
     }
     public function actionDelete($id)
     {
+        $this->layout = 'basic';
+        
         $delete = TodoInfo::findOne($id);
         if (!$delete) {
             throw new NotFoundHttpException("Error: Not found");
@@ -72,6 +80,7 @@ class TodoController extends Controller
 
     public function actionUpdateStatus()
 {
+
     Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
     $id = Yii::$app->request->post('id');
     $todo = TodoInfo::findOne($id);
