@@ -132,9 +132,9 @@ class SiteController extends AppController
     }
 
 
-    public function actionHello()
+    public function actionAdmin()
     {
-        return $this->render('hello');
+        return $this->render('admin');
     }
 
 

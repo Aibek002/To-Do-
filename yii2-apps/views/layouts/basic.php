@@ -44,6 +44,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         <?= Html::a('Articles', ['/post/test/'], ['class' => 'nav-link']) ?></li>
                     <li role="presentation" class='nav-item'>
                         <?= Html::a('Article', ['/post/show/'], ['class' => 'nav-link']) ?></li>
+                        <li role="presentation" class='nav-item'>
+                        <?= Html::a('Article', ['/фв/show/'], ['class' => 'nav-link']) ?></li>
                 </ul>
             </header>
             <?= $content ?>
