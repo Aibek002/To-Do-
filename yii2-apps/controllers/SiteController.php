@@ -39,6 +39,7 @@ class SiteController extends AppController
      */
     public function actionIndex()
     {
+        echo'App';
         return $this->render('homepage');
     }
 
